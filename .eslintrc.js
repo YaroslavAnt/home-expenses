@@ -13,4 +13,5 @@ module.exports = {
     window: true,
     document: true,
   },
+  parser: 'babel-eslint',
 };
