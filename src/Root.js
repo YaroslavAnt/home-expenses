@@ -9,8 +9,8 @@ const Root = () => (
   <BrowserRouter>
     <div>
       <Route path="/" exact component={Dashboard} />
-      <Route path="/reports" exact component={Reports} />
-      <Route path="/config" exact component={Config} />
+      <Route path="/reports" component={Reports} />
+      <Route path="/config" component={Config} />
     </div>
   </BrowserRouter>
 );

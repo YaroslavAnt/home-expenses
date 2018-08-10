@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import {
   Drawer,
   Avatar,
   Typography,
   Divider,
-  List,
-  ListItem,
   Icon,
-  ListItemText,
   withStyles,
+  Button,
 } from '../../node_modules/@material-ui/core';
 import logo from '../logo.svg';
 
 const drawerWidth = 300;
 
 const styles = () => ({
+  container: {
+    display: 'flex',
+    padding: 10,
+    flexWrap: 'wrap',
+  },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
@@ -28,7 +32,18 @@ const styles = () => ({
   logo: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    margin: '20px 10px',
+    fontSize: 30,
+  },
+  active: {
+    backgroundColor: '#00b0c7',
+    color: '#fff',
+  },
+  button: {
+    marginBottom: 10,
+    flexGrow: 1,
+    width: '100%',
+    justifyContent: 'flex-start',
   },
 });
 
@@ -36,7 +51,7 @@ class DrawerUI extends Component {
   state = {};
 
   render() {
-    const { classes } = this.props;
+    const { classes, item } = this.props;
     return (
       <Drawer
         variant="permanent"
@@ -47,37 +62,44 @@ class DrawerUI extends Component {
       >
         <div className={classes.logo}>
           <Avatar alt="logo" src={logo} />
-          <Typography variant="headline">Home expenses+</Typography>
+          <Typography variant="headline">Home expenses</Typography>
         </div>
         <Divider />
-        <List>
-          <Link to="/">
-            <ListItem>
-              <Avatar>
-                <Icon>dashboard</Icon>
-              </Avatar>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-          </Link>
 
-          <Link to="/reports">
-            <ListItem>
-              <Avatar>
-                <Icon>format_list_bulleted</Icon>
-              </Avatar>
-              <ListItemText primary="Reports" />
-            </ListItem>
-          </Link>
+        <div className={classes.container}>
+          <Button
+            component={Link}
+            to="/"
+            size="large"
+            variant={item === 'Dashboard' ? 'contained' : 'outlined'}
+            className={classNames(item === 'Dashboard' ? classes.active : null, classes.button)}
+          >
+            <Icon className={classes.rightIcon}>dashboard</Icon>
+            Dashboard
+          </Button>
 
-          <Link to="/config">
-            <ListItem>
-              <Avatar>
-                <Icon>settings</Icon>
-              </Avatar>
-              <ListItemText primary="Config" />
-            </ListItem>
-          </Link>
-        </List>
+          <Button
+            component={Link}
+            to="/reports"
+            size="large"
+            variant={item === 'Reports' ? 'contained' : 'outlined'}
+            className={classNames(item === 'Reports' ? classes.active : null, classes.button)}
+          >
+            <Icon className={classes.rightIcon}>format_list_bulleted</Icon>
+            Reports
+          </Button>
+
+          <Button
+            component={Link}
+            to="/config"
+            size="large"
+            variant={item === 'Config' ? 'contained' : 'outlined'}
+            className={classNames(item === 'Config' ? classes.active : null, classes.button)}
+          >
+            <Icon className={classes.rightIcon}>settings</Icon>
+            Config
+          </Button>
+        </div>
         <Divider />
       </Drawer>
     );
@@ -86,6 +108,7 @@ class DrawerUI extends Component {
 
 DrawerUI.propTypes = {
   classes: PropTypes.object.isRequired,
+  item: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(DrawerUI);

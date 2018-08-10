@@ -27,13 +27,13 @@ const styles = theme => ({
 class Config extends React.Component {
   render() {
     const { classes } = this.props;
-
+    const item = 'Config';
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <DrawerUI />
+          <DrawerUI item={item} />
           <main className={classes.content}>
-            <UserBar item="Config" />
+            <UserBar item={item} />
             <EditCategory />
           </main>
         </div>
