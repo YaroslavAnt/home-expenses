@@ -5,7 +5,7 @@ export const addCategory = newCategory => ({
   payload: newCategory,
 });
 
-export const initialState = [];
+export const initialState = ['f', 1, 2];
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
