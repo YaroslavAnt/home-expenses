@@ -8,6 +8,7 @@ module.exports = {
     'no-trailing-spaces': 0,
     'linebreak-style': 0,
     'react/forbid-prop-types': 0,
+    'react/no-array-index-key': 1,
   },
   globals: {
     window: true,
